@@ -27,11 +27,11 @@ describe("Part II: query me this", function () {
 
   describe('#limit', function () {
 
-    xit("`Plan` instances (plans) hold a row limit", function () {
+    it("`Plan` instances (plans) hold a row limit", function () {
       expect(Plan.prototype.setLimit).to.be.a('function');
     });
 
-    xit("`withinLimit` always returns true if no limit has been set", function () {
+    it("`withinLimit` always returns true if no limit has been set", function () {
       expect(Plan.prototype.withinLimit).to.be.a('function');
       const plan = new Plan();
       const randomInteger = Math.floor(Math.random() * 1000);
@@ -39,7 +39,7 @@ describe("Part II: query me this", function () {
       expect(plan.withinLimit(randomlySizedArray)).to.equal(true);
     });
 
-    xit("plans can return whether a possible result is `withinLimit`", function () {
+    it("plans can return whether a possible result is `withinLimit`", function () {
       const plan = new Plan();
       plan.setLimit(14);
       expect(plan.withinLimit([])).to.equal(true);
@@ -51,7 +51,7 @@ describe("Part II: query me this", function () {
       expect(plan.withinLimit(arrayOfABunchOfThings)).to.equal(false);
     });
 
-    xit("`limit` returns a query and does not cause the query to execute, only `get` does that", function () {
+    it("`limit` returns a query and does not cause the query to execute, only `get` does that", function () {
       expect(FQL.prototype.limit).to.be.a('function');
       chai.spy.on(movieTable, 'read');
       chai.spy.on(movieTable, 'getRowIds');
@@ -61,7 +61,7 @@ describe("Part II: query me this", function () {
       expect(movieTable.getRowIds).not.to.have.been.called();
     });
 
-    xit("queries can limit the result set", function () {
+    it("queries can limit the result set", function () {
       // note: each query will presumably need a corresponding `Plan` instance for this to work
       const limitQuery = movieQuery.limit(4);
       chai.spy.on(Plan.prototype, 'withinLimit');
